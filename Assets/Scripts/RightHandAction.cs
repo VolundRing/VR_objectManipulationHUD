@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class RightHandAction : MonoBehaviour {
 	public LineRenderer raycast;
-
+	GameObject chosen;
+	Transform chosenparent;
 	// Use this for initialization
 	void Start () {
 		
@@ -19,7 +20,18 @@ public class RightHandAction : MonoBehaviour {
 			Vector3 endPosition = transform.position;
 			if (Physics.Raycast (transform.position, fwd, out hit, 10000)) {
 				endPosition = hit.point;
-
+				chosen = hit.collider.gameObject;
+				if (chosen.GetComponent<Rigidbody>() != null) {
+					if (OVRInput.Get (OVRInput.Axis1D.SecondaryHandTrigger, OVRInput.Controller.Touch) == 1.0f) {
+						chosen.GetComponent<Rigidbody> ().isKinematic = true;
+						chosenparent = chosen.transform.parent;
+						chosen.transform.parent = transform;
+						//chosen.transform.position = transform.position - transform.forward;
+					} else {
+						chosen.transform.parent = null;
+						chosen.GetComponent<Rigidbody> ().isKinematic = false;
+					}
+				}
 
 			}
 			raycast.SetPosition (0, transform.position);
