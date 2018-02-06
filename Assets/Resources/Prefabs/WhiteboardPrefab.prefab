@@ -548,6 +548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4376473447581234}
   - component: {fileID: 65950228652583150}
+  - component: {fileID: 54752964074342426}
   m_Layer: 0
   m_Name: WhiteboardPrefab
   m_TagString: Untagged
@@ -2266,6 +2267,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1410368611739976}
   m_Mesh: {fileID: 4300022, guid: 1ad77d86760785048b3c967d41cf0624, type: 3}
+--- !u!54 &54752964074342426
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1573746743917078}
+  serializedVersion: 2
+  m_Mass: 3
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65950228652583150
 BoxCollider:
   m_ObjectHideFlags: 1
