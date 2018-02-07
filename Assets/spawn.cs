@@ -107,6 +107,7 @@ public class spawn : MonoBehaviour {
 				fullObj = Instantiate (deckObjs [whichDeckObj], new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.2f), transform.rotation) as GameObject;
 				fullObj.GetComponent<Rigidbody> ().isKinematic = true;
 				fullObj.transform.parent = transform;
+				fullObj.AddComponent<Upright> ();
 
 
 			}
