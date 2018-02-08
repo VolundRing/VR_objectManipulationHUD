@@ -17,8 +17,8 @@ public class spawn : MonoBehaviour {
 	GameObject miniObj;
 	GameObject fullObj;
 	public List<GameObject> Group = new List<GameObject>();
-	//public GameObject GroupEmpty;
-	public GameObject GEmpty;
+	public GameObject GroupEmpty;
+	GameObject GEmpty;
 
 
 		
@@ -34,31 +34,23 @@ public class spawn : MonoBehaviour {
 				chosen = hit.collider.gameObject;
 				if (chosen.GetComponent<Rigidbody> () != null) {
 					if (OVRInput.GetDown(OVRInput.Button.Three, OVRInput.Controller.Touch) == true) {
-						//Parents to GEmpty
-
-
-						if (chosen.transform.root != chosen.transform) {
-							chosen.transform.parent = null;
-							//Nothing in group? destroy empty.
-						} else {
-							if (GEmpty.transform.childCount == 0) {
-								GEmpty.transform.position = chosen.transform.position;
-								//chosen.transform.parent = GEmpty.transform;
-							}
+						//Parents to GroupEmpty
+						if (GameObject.Find("GEmpty") != null && chosen.transform.root == chosen.transform) {
 							chosen.transform.parent = GEmpty.transform;
 						}
-
-
-//						if (chosen.transform.root == chosen.transform) {
-//							chosen.transform.parent = GEmpty.transform;
-//						}
-//						//Creates GroupEmpty and parents
-//						if (chosen.transform.root == chosen.transform) {
-//							
-//							chosen.transform.parent = GEmpty.transform;
-//						}
+						//Creates GroupEmpty and parents
+						if (GameObject.Find("GEmpty") == null && chosen.transform.root == chosen.transform) {
+							GEmpty = Instantiate (GEmpty, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation) as GameObject; 
+							chosen.transform.parent = GEmpty.transform;
+						}
 						//Ungroups
-					
+						if (GameObject.Find("GEmpty") != null && chosen.transform.root != chosen.transform) {
+							chosen.transform.parent = null;
+							//Nothing in group? destroy empty.
+							if (GEmpty.transform.childCount == 0) {
+								Destroy (GEmpty);
+							}
+						}
 
 //							
 //						if (Group.Contains (chosen)) { 

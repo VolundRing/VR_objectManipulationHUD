@@ -6,7 +6,6 @@ public class RightHandAction : MonoBehaviour {
 	public LineRenderer raycast;
 	public GameObject newraychosen;
 	GameObject oldraychosen;
-	public GameObject GEmpty;
 	GameObject chosen2;
 	public SphereCollider thisCollider;
 	Transform chosenparent;
@@ -29,13 +28,6 @@ public class RightHandAction : MonoBehaviour {
 			if (Physics.Raycast (transform.position, fwd, out hit, 10000)) {
 				endPosition = hit.point;
 				newraychosen = hit.collider.gameObject;
-				if (newraychosen.transform.parent == GEmpty.transform) {
-					newraychosen = GEmpty;
-					Rigidbody[] _rigidbody = newraychosen.GetComponentsInChildren<Rigidbody> ();
-					for (int i = 0; i < _rigidbody.Length; i++) {
-						_rigidbody [i].isKinematic = true;
-					}
-				}
 				if (newraychosen != oldraychosen) {
 					if (oldraychosen != null && oldraychosen.GetComponent<Rigidbody> () != null) {
 						oldraychosen.transform.parent = null;
@@ -67,12 +59,6 @@ public class RightHandAction : MonoBehaviour {
 						isGrabbed = false;
 						newraychosen.transform.parent = null;
 						newraychosen.GetComponent<Rigidbody> ().isKinematic = false;
-						if (newraychosen == GEmpty) {
-							Rigidbody[] _rigidbody = newraychosen.GetComponentsInChildren<Rigidbody> ();
-							for (int i = 0; i < _rigidbody.Length; i++) {
-								_rigidbody [i].isKinematic = false;
-							}
-						}
 						newraychosen = null;
 					}
 				} else if (newraychosen.GetComponent<TerrainCollider> () != null) {
