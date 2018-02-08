@@ -32,6 +32,12 @@ public class RightHandAction : MonoBehaviour {
 							chosen.GetComponent<Rigidbody> ().isKinematic = true;
 							chosenparent = chosen.transform.parent;
 							chosen.transform.parent = transform;
+							if (OVRInput.Get (OVRInput.Button.SecondaryThumbstickRight, OVRInput.Controller.Touch) == true) {
+								chosen.transform.Rotate (Vector3.right * 3f * Time.deltaTime);
+							}
+							if (OVRInput.Get (OVRInput.Button.SecondaryThumbstickLeft, OVRInput.Controller.Touch) == true) {
+								chosen.transform.Rotate (Vector3.left * 3f * Time.deltaTime);
+							}
 							//chosen.transform.position = transform.position - transform.forward;
 						}
 					} else {

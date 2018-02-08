@@ -6,11 +6,15 @@ public class Upright : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		this.GetComponent<Rigidbody> ().freezeRotation = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.eulerAngles = new Vector3 (-90f, transform.eulerAngles.y, transform.eulerAngles.z);
+		/*if (GetComponent<Rigidbody> ().freezeRotation == false) {
+			this.GetComponent<Rigidbody> ().freezeRotation = true;
+		}*/
+		//transform.rotation = Quaternion.Euler (-90f, transform.eulerAngles.y, transform.eulerAngles.z);
+
 	}
 }
