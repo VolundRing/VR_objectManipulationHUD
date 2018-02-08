@@ -20,12 +20,7 @@ public class spawn : MonoBehaviour {
 	public GameObject GroupEmpty;
 	GameObject GEmpty;
 
-	void Start () {
-		
-	}
-	void GroupEmptyInst() {
-	
-	}
+
 		
 	void Update () {
 		
@@ -39,11 +34,24 @@ public class spawn : MonoBehaviour {
 				chosen = hit.collider.gameObject;
 				if (chosen.GetComponent<Rigidbody> () != null) {
 					if (OVRInput.GetDown(OVRInput.Button.Three, OVRInput.Controller.Touch) == true) {
-//						if (GEmpty 
-//						if (chosen.transform.root == chosen.transform) {
-//							GEmpty = Instantiate (GEmpty, new Vector3(transform.position.x, transform.position.y, transform.position), transform.rotation) as GameObject; 
-//							chosen.transform.parent = Gempty
-//						}
+						//Parents to GroupEmpty
+						if (GameObject.Find("GEmpty") != null && chosen.transform.root == chosen.transform) {
+							chosen.transform.parent = GEmpty.transform;
+						}
+						//Creates GroupEmpty and parents
+						if (GameObject.Find("GEmpty") == null && chosen.transform.root == chosen.transform) {
+							GEmpty = Instantiate (GEmpty, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation) as GameObject; 
+							chosen.transform.parent = GEmpty.transform;
+						}
+						//Ungroups
+						if (GameObject.Find("GEmpty") != null && chosen.transform.root != chosen.transform) {
+							chosen.transform.parent = null;
+							//Nothing in group? destroy empty.
+							if (GEmpty.transform.childCount == 0) {
+								Destroy (GEmpty);
+							}
+						}
+
 //							
 //						if (Group.Contains (chosen)) { 
 //							Group.Remove (chosen);
