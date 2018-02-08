@@ -14,7 +14,10 @@ public class Upright : MonoBehaviour {
 		/*if (GetComponent<Rigidbody> ().freezeRotation == false) {
 			this.GetComponent<Rigidbody> ().freezeRotation = true;
 		}*/
-		//transform.rotation = Quaternion.Euler (-90f, transform.eulerAngles.y, transform.eulerAngles.z);
+		transform.rotation = Quaternion.Euler (-90f, transform.eulerAngles.y, transform.eulerAngles.z);
+		if (transform.position.y < 0) {
+			transform.position = new Vector3 (transform.position.x, 1f, transform.position.z);
+		}
 
 	}
 }
