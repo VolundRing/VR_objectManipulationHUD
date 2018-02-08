@@ -17,12 +17,15 @@ public class spawn : MonoBehaviour {
 	GameObject miniObj;
 	GameObject fullObj;
 	public List<GameObject> Group = new List<GameObject>();
-
+	public GameObject GroupEmpty;
+	GameObject GEmpty;
 
 	void Start () {
 		
 	}
-		
+	void GroupEmptyInst() {
+	
+	}
 		
 	void Update () {
 		
@@ -36,13 +39,19 @@ public class spawn : MonoBehaviour {
 				chosen = hit.collider.gameObject;
 				if (chosen.GetComponent<Rigidbody> () != null) {
 					if (OVRInput.GetDown(OVRInput.Button.Three, OVRInput.Controller.Touch) == true) {
-						if (Group.Contains (chosen)) { 
-							Group.Remove (chosen);
-							groupLength = Group.Count;
-						} else {
-							Group.Add (chosen); 
-							groupLength = Group.Count;
-						}
+//						if (GEmpty 
+//						if (chosen.transform.root == chosen.transform) {
+//							GEmpty = Instantiate (GEmpty, new Vector3(transform.position.x, transform.position.y, transform.position), transform.rotation) as GameObject; 
+//							chosen.transform.parent = Gempty
+//						}
+//							
+//						if (Group.Contains (chosen)) { 
+//							Group.Remove (chosen);
+//							groupLength = Group.Count;
+//						} else {
+//							Group.Add (chosen); 
+//							groupLength = Group.Count;
+//						}
 					}
 				}
 			}
@@ -104,7 +113,7 @@ public class spawn : MonoBehaviour {
 
 			if (OVRInput.GetDown (OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.Touch) == true) {
 				//Destroy (miniObj);
-				fullObj = Instantiate (deckObjs [whichDeckObj], new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.2f), transform.rotation) as GameObject;
+				fullObj = Instantiate (deckObjs [whichDeckObj], new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z + 0.2f), transform.rotation) as GameObject;
 				fullObj.GetComponent<Rigidbody> ().isKinematic = true;
 				fullObj.transform.parent = transform;
 				fullObj.AddComponent<Upright> ();
