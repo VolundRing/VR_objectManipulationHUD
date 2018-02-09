@@ -6,19 +6,24 @@ namespace cakeslice
 {
     public class Toggle : MonoBehaviour
     {
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
         // Update is called once per frame
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.K))
+			if(gameObject.transform.parent != null && gameObject.transform.parent != GameObject.Find("RightHandAnchor").transform)
             {
-                GetComponent<Outline>().enabled = !GetComponent<Outline>().enabled;
-            }
+				Outline[] _outline = gameObject.GetComponentsInChildren<Outline> ();
+				for (int i = 0; i < _outline.Length; i++) {
+					_outline [i].enabled = true;
+				}
+
+//				gameObject.GetComponentsinChildren<Outline>().enabled = true;
+			}
+			if (gameObject.transform.parent == null && gameObject.transform.parent != GameObject.Find("RightHandAnchor").transform){
+				Outline[] _outline = gameObject.GetComponentsInChildren<Outline> ();
+				for (int i = 0; i < _outline.Length; i++) {
+					_outline [i].enabled = false;
+				}
+			}
         }
     }
 }

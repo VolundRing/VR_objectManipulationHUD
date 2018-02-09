@@ -549,6 +549,9 @@ GameObject:
   - component: {fileID: 4376473447581234}
   - component: {fileID: 65950228652583150}
   - component: {fileID: 54752964074342426}
+  - component: {fileID: 114087413899163382}
+  - component: {fileID: 114478728838605438}
+  - component: {fileID: 114901461001749448}
   m_Layer: 0
   m_Name: WhiteboardPrefab
   m_TagString: Untagged
@@ -889,6 +892,7 @@ GameObject:
   - component: {fileID: 4379736979112640}
   - component: {fileID: 33621063945790296}
   - component: {fileID: 23576157612978484}
+  - component: {fileID: 114336271704930362}
   m_Layer: 0
   m_Name: Mesh14
   m_TagString: Untagged
@@ -1152,7 +1156,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1573746743917078}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.67352295, y: 1.502, z: -5.848}
+  m_LocalPosition: {x: -1.4603819, y: 0.8997566, z: -5.8450017}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4421615179499208}
@@ -2294,3 +2298,51 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4932916, y: 0.045148835, z: 1.0085624}
   m_Center: {x: -0.0111809075, y: -0.0021294337, z: 0.004281223}
+--- !u!114 &114087413899163382
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1573746743917078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c72b3f4c374d0ba47824d73874ac6fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114336271704930362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992737531750844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
+--- !u!114 &114478728838605438
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1573746743917078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ba4b8612b9fc364084c52182582489a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114901461001749448
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1573746743917078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a036ad12e2703be498ecb5d9e2ac753d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
