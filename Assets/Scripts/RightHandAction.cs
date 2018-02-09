@@ -13,7 +13,7 @@ public class RightHandAction : MonoBehaviour {
 	bool isGrabbed = false;
 
 	//bool hasEntered = false;
-	float teleportTimer = 4f;
+	float teleportTimer = 2f;
 	// Use this for initialization
 	void Start () {
 		
@@ -29,17 +29,21 @@ public class RightHandAction : MonoBehaviour {
 			if (Physics.Raycast (transform.position, fwd, out hit, 10000)) {
 				endPosition = hit.point;
 				newraychosen = hit.collider.gameObject;
-				if (newraychosen.transform.parent == GEmpty.transform) {
-					newraychosen = GEmpty;
-					Rigidbody[] _rigidbody = newraychosen.GetComponentsInChildren<Rigidbody> ();
-					for (int i = 0; i < _rigidbody.Length; i++) {
-						_rigidbody [i].isKinematic = true;
-					}
+				if (newraychosen.transform.parent != null && newraychosen.transform.parent != transform && newraychosen.transform.parent != GameObject.Find("room").transform) {
+					newraychosen = newraychosen.transform.parent.gameObject;
+					GEmpty = newraychosen;
 				}
 				if (newraychosen != oldraychosen) {
 					if (oldraychosen != null && oldraychosen.GetComponent<Rigidbody> () != null) {
 						oldraychosen.transform.parent = null;
 						oldraychosen.GetComponent<Rigidbody> ().isKinematic = false;
+						if (GEmpty != null) {
+							Rigidbody[] _rigidbody = oldraychosen.GetComponentsInChildren<Rigidbody> ();
+							for (int i = 0; i < _rigidbody.Length; i++) {
+								_rigidbody [i].isKinematic = false;
+							}
+							GEmpty = null;
+						}
 						oldraychosen = null;
 
 						//isGrabbed = false;
@@ -47,31 +51,40 @@ public class RightHandAction : MonoBehaviour {
 					oldraychosen = newraychosen;
 				}
 				if (newraychosen.GetComponent<Rigidbody> () != null) {
+					//Grab and parent chosen to 
 					if (OVRInput.Get (OVRInput.Button.SecondaryHandTrigger, OVRInput.Controller.Touch) == true) {
 						if (isGrabbed == false) {
 							isGrabbed = true;
+							if (GEmpty != null) {
+								Rigidbody[] _rigidbody = newraychosen.GetComponentsInChildren<Rigidbody> ();
+								for (int i = 0; i < _rigidbody.Length; i++) {
+									_rigidbody [i].isKinematic = true;
+								}
+							}
 							newraychosen.GetComponent<Rigidbody> ().isKinematic = true;
 							chosenparent = newraychosen.transform.parent;
 							newraychosen.transform.parent = transform;
 
 							//chosen.transform.position = transform.position - transform.forward;
-						} else {
-							if (OVRInput.Get (OVRInput.Button.SecondaryThumbstickRight, OVRInput.Controller.Touch) == true) {
-								newraychosen.transform.Rotate (Vector3.right * 3f * Time.deltaTime);
-							}
-							if (OVRInput.Get (OVRInput.Button.SecondaryThumbstickLeft) == true) {
-								newraychosen.transform.Rotate (Vector3.left * 3f * Time.deltaTime);
-							}
+
+
 						}
-					} else {
+						if (OVRInput.Get (OVRInput.Axis2D.SecondaryThumbstick, OVRInput.Controller.Touch).x >= 0.5f) {
+							newraychosen.transform.Rotate (Vector3.back * 40f * Time.deltaTime);
+						}
+						if (OVRInput.Get (OVRInput.Axis2D.SecondaryThumbstick, OVRInput.Controller.Touch).x <= -0.5f) {
+							newraychosen.transform.Rotate (Vector3.forward* 40f * Time.deltaTime);
+						}
+					} else{// if (OVRInput.GetUp (OVRInput.Button.SecondaryHandTrigger, OVRInput.Controller.Touch) == true) {
 						isGrabbed = false;
 						newraychosen.transform.parent = null;
 						newraychosen.GetComponent<Rigidbody> ().isKinematic = false;
-						if (newraychosen == GEmpty) {
+						if (GEmpty != null) {
 							Rigidbody[] _rigidbody = newraychosen.GetComponentsInChildren<Rigidbody> ();
 							for (int i = 0; i < _rigidbody.Length; i++) {
 								_rigidbody [i].isKinematic = false;
 							}
+							GEmpty = null;
 						}
 						newraychosen = null;
 					}
@@ -80,7 +93,7 @@ public class RightHandAction : MonoBehaviour {
 						teleportTimer -= Time.deltaTime;
 						if (teleportTimer < 0) {
 							GameObject.Find("OVRPlayerController").transform.position = hit.point;
-							teleportTimer = 4f;
+							teleportTimer = 2f;
 						}
 					}
 				}
@@ -94,6 +107,13 @@ public class RightHandAction : MonoBehaviour {
 			if (newraychosen != null && newraychosen.GetComponent<Rigidbody> () != null) {
 				newraychosen.transform.parent = null;
 				newraychosen.GetComponent<Rigidbody> ().isKinematic = false;
+				if (GEmpty != null) {
+					Rigidbody[] _rigidbody = newraychosen.GetComponentsInChildren<Rigidbody> ();
+					for (int i = 0; i < _rigidbody.Length; i++) {
+						_rigidbody [i].isKinematic = false;
+					}
+					GEmpty = null;
+				}
 				newraychosen = null;
 				//isGrabbed = false;
 			}
