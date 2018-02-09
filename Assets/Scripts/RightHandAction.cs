@@ -75,7 +75,7 @@ public class RightHandAction : MonoBehaviour {
 						if (OVRInput.Get (OVRInput.Axis2D.SecondaryThumbstick, OVRInput.Controller.Touch).x <= -0.5f) {
 							newraychosen.transform.Rotate (Vector3.forward* 40f * Time.deltaTime);
 						}
-					} else{// if (OVRInput.GetUp (OVRInput.Button.SecondaryHandTrigger, OVRInput.Controller.Touch) == true) {
+					} else if(newraychosen.transform.parent != GameObject.Find("LeftHandAnchor").transform){// if (OVRInput.GetUp (OVRInput.Button.SecondaryHandTrigger, OVRInput.Controller.Touch) == true) {
 						isGrabbed = false;
 						newraychosen.transform.parent = null;
 						newraychosen.GetComponent<Rigidbody> ().isKinematic = false;
